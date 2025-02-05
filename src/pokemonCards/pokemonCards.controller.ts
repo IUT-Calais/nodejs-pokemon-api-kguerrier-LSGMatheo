@@ -1,5 +1,8 @@
 import{ Request, Response } from 'express';
+import prisma from '../client';
 
 export const getPokemonCards = async (_req: Request, res: Response) => {
-    res.status(200).send('Liste des Pokemons :');
+    const pokemon=await prisma.pokemonCard.findMany();
+    res.status(200).send(pokemon);
+
 }
