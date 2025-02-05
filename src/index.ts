@@ -1,6 +1,8 @@
 import express from 'express';
 import { Request, Response } from 'express';
 
+import { pokemonCardRouter } from './pokemonCards/pokemonCards.router';
+
 
 export const app = express();
 const port = process.env.PORT || 3000;
@@ -13,17 +15,20 @@ export function stopServer() {
   server.close();
 }
 
-app.get('/pokemons-cards', (_req: Request, _res: Response) => {
-  _res.status(200).send('Liste de tous les Pokémons');
-});
+app.use('/pokemons-cards', pokemonCardRouter);
+// app.get('/pokemons-cards', (_req: Request, _res: Response) => {
+//   _res.status(200).send('Liste de tous les Pokémons');
+
+// });
 
 app.get('/pokemons-cards/:pokemonCardId', (_req: Request, _res: Response) => {
-  _res.status(200).send('Liste de tous les Pokémons avec id');
+  const pokemonCardId = _req.params.pokemonCardId;
+  _res.status(200).send('Pokemon avec l\' id : ' +pokemonCardId );
 });
 
-app.post('/pokemons-cards', (_req: Request, _res: Response) => {
-  _res.status(200).send('post: Liste de tous les Pokémons');
-});
+// app.post('/pokemons-cards', (_req: Request, _res: Response) => {
+//   _res.status(200).send('post: Liste de tous les Pokémons');
+// });
 
 app.patch('/pokemon-cards/:pokemonCardId', (_req: Request, _res: Response) => {
   _res.status(200).send('post: Liste de tous les Pokémons avec id');
