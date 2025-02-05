@@ -13,3 +13,27 @@ export const getPokemonCardsById = async (req: Request, res: Response) => {
     res.status(200).send(pokemon);
 
 }
+
+export const createPokemonCards = async (req: Request, res: Response) => {
+    const {
+        id : id, 
+        name : name, 
+        pokedexId : pokedexId, 
+        typeId : typeId, 
+        lifePoints : lifePoints, 
+        size : size, 
+        weight : weight, 
+        imageUrl : imageUrl
+    } = req.body;
+    const pokemon=await prisma.pokemonCard.create({ data : {
+        id,
+        name,
+        pokedexId,
+        typeId,
+        lifePoints,
+        size,
+        weight,
+        imageUrl
+    }});
+    res.status(200).send(pokemon);
+}
