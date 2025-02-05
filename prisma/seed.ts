@@ -27,6 +27,43 @@ async function main() {
     ],
   });
 
+  await prisma.pokemonCard.deleteMany();
+  await prisma.pokemonCard.createMany({
+    data: [
+      { 
+        id : 1,
+        name:'Bulbizard',
+        pokedexId: 1,
+        typeId: 4,
+        lifePoints : 50,
+        size : 0.7,
+        weight : 6.9,
+        imageUrl:"https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png"    
+      },
+      {
+        id : 2,
+        name:'Herbizarre',
+        pokedexId: 2,
+        typeId: 4,
+        lifePoints : 60,
+        size : 1.0,
+        weight : 13.0,
+        imageUrl:"https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/002.png"
+      },
+      {
+        id : 3,
+        name:'Florizarre',
+        pokedexId: 3,
+        typeId: 4,
+        lifePoints : 70,
+        size : 2.0,
+        weight : 100.0,
+        imageUrl:"https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/003.png"
+      }
+      
+    ],
+  });
+
   console.log('Seed completed!');
 }
 
