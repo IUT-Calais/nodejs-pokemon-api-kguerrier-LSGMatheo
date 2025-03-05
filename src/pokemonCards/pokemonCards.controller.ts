@@ -37,3 +37,35 @@ export const createPokemonCards = async (req: Request, res: Response) => {
     }});
     res.status(200).send(pokemon);
 }
+
+export const updatePokemonCards = async (req: Request, res: Response) => {
+    const pokemonCardId = req.params.pokemonCardId;
+    const {
+        id : id, 
+        name : name, 
+        pokedexId : pokedexId, 
+        typeId : typeId, 
+        lifePoints : lifePoints, 
+        size : size, 
+        weight : weight, 
+        imageUrl : imageUrl
+    } = req.body;
+    const pokemon=await prisma.pokemonCard.update(
+        {where: { id: Number(pokemonCardId) },
+        data : {
+            name,
+            pokedexId,
+            typeId,
+            lifePoints,
+            size,
+            weight,
+            imageUrl
+        }});
+    res.status(200).send(pokemon);
+}
+
+export const deletePokemonCards = async (req: Request, res: Response) => {
+    const pokemonCardId = req.params.pokemonCardId;
+    const pokemon=await prisma.pokemonCard.delete({where: { id: Number(pokemonCardId) }});
+    res.status(200).send(pokemon);
+}

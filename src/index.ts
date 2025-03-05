@@ -18,19 +18,19 @@ export function stopServer() {
 app.use('/pokemons-cards', pokemonCardRouter);
 
 
-app.get('/pokemons-cards/:pokemonCardId', (req: Request, res: Response) => {
-  const pokemonCardId = req.params.pokemonCardId;
-  res.status(200).send('Pokemon avec l\' id : ' +pokemonCardId );
-});
+// app.get('/pokemons-cards/:pokemonCardId', (req: Request, res: Response) => {
+//   const pokemonCardId = req.params.pokemonCardId;
+//   res.status(200).send('Pokemon avec l\' id : ' +pokemonCardId );
+// });
 
 // app.post('/pokemons-cards', (_req: Request, _res: Response) => {
 //   _res.status(200).send('post: Liste de tous les Pokémons');
 // });
 
-app.patch('/pokemon-cards/:pokemonCardId', (_req: Request, _res: Response) => {
-  _res.status(200).send('post: Liste de tous les Pokémons avec id');
-});
+// app.patch('/pokemon-cards/:pokemonCardId', (_req: Request, _res: Response) => {
+//   _res.status(200).send('post: Liste de tous les Pokémons avec id');
+// });
 
-app.delete('/pokemon-cards/:pokemonCardId', (_req: Request, _res: Response) => {
-  _res.status(200).send('Liste de tous les Pokémons');
-});
+// app.delete('/pokemon-cards/:pokemonCardId', (_req: Request, _res: Response) => {
+//   _res.status(200).send('Liste de tous les Pokémons');
+// });
