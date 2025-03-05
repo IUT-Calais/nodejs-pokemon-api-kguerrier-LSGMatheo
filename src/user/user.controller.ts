@@ -1,6 +1,7 @@
 import{ Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import prisma from '../client';
+import jwt from 'jsonwebtoken';
 
 export const createUser = async (req: Request, res: Response) => {
     try{
@@ -33,3 +34,19 @@ export const createUser = async (req: Request, res: Response) => {
         }
     }
 };
+
+export const login = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+    if (email !== 'admin' || password !== 'password') {
+    res.status(401).send('Identifiants invalides');
+    return;
+    }
+    const token = jwt.sign(
+    { username: email }, // Payload
+    process.env.JWT_SECRET as jwt.Secret, // Secret
+    { expiresIn: '1d' } // Expiration"
+    );
+    res.status(200).json({
+    token,
+    });
+   };
