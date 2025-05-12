@@ -17,7 +17,7 @@ export const getPokemonCardsById = async (req: Request, res: Response) => {
         res.status(200).send(pokemon);
     }
     catch (error) {
-        res.status(404).send("404 Not Found");
+        res.status(404).send("PokemonCard not found");
     }
 }
 
