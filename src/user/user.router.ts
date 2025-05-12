@@ -5,4 +5,4 @@ export const userRouter = Router();
 
 userRouter.post('/', createUser);
 
-userRouter.patch('/login', login);
+userRouter.post('/login', login);

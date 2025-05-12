@@ -37,8 +37,17 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    if (email !== 'admin' || password !== 'password') {
-    res.status(401).send('Identifiants invalides');
+    const existingUser = await prisma.user.findFirst({
+        where: { email }
+    });
+    
+    if (!existingUser) {
+        res.status(404).send("l'utilisateur n'existe pas");
+        return;
+    }
+    const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+    if (email !== existingUser.email || !isPasswordValid) {
+    res.status(400).send('Identifiants invalides');
     return;
     }
     const token = jwt.sign(
@@ -46,7 +55,7 @@ export const login = async (req: Request, res: Response) => {
     process.env.JWT_SECRET as jwt.Secret, // Secret
     { expiresIn: '1d' } // Expiration"
     );
-    res.status(200).json({
+    res.status(201).json({
     token,
     });
    };
