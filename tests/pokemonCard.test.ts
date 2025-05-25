@@ -205,7 +205,7 @@ describe('PokemonCard API', () => {
         }
       ];
         
-      prismaMock.pokemonCard.delete.mockResolvedValue(deletedPokemonCard);
+      prismaMock.pokemonCard.delete.mockResolvedValue(deletedPokemonCardPokemonCard);
       const response = await request(app)
       .delete('/pokemons-cards/1')
 
